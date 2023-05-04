@@ -4,6 +4,8 @@ x-common-variables: &common-variables
   NODE_ENV : development
   JWT_SECRET : abc123
   MONGO_URI : "${MONGO_URI}"
+  # enabling this flag because of host header checking
+  DANGEROUSLY_DISABLE_HOST_CHECK: true
 
 services:
   backend:
@@ -12,11 +14,9 @@ services:
     volumes:
       - /app/node_modules
       - ./backend:/app/backend
-    ports:
-      - 4001:3001
     environment:
       <<: *common-variables
-      PORT: 3001
+      PORT: 3000
 
   frontend:
     build:
@@ -26,9 +26,17 @@ services:
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    ports:
-      - 4000:3000
     environment:
       <<: *common-variables
       PORT: 3000
-
+  
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - 3000:80
