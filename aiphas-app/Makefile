@@ -20,6 +20,10 @@ run.dev.frontend:
 .PHONY: build
 build: build.backend build.frontend
 
+.PHONY: build.nginx
+build.nginx:
+	docker-compose build nginx
+
 .PHONY: build.frontend
 build.frontend:
 	docker-compose build frontend
