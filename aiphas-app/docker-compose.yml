@@ -1,0 +1,34 @@
+version: '3.8'
+
+x-common-variables: &common-variables
+  NODE_ENV : development
+  JWT_SECRET : abc123
+  MONGO_URI : "${MONGO_URI}"
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./backend:/app/backend
+    ports:
+      - 4001:3001
+    environment:
+      <<: *common-variables
+      PORT: 3001
+
+  frontend:
+    build:
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    ports:
+      - 4000:3000
+    environment:
+      <<: *common-variables
+      PORT: 3000
+
