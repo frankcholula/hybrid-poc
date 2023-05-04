@@ -9,7 +9,7 @@ build and installation commands are in the Makefile.
 ```bash
 make all
 ```
-This is currently using `Mongo Atlas` so make sure you have a `.env` file with the right credentials in both the `frontend` and `aiphas-app` directories.
+Open `localhost:3000` for the application frontend. This is currently using `Mongo Atlas` so make sure you have a `.env` file with the right credentials in both the `frontend` and `aiphas-app` directories.
 
 
 ## Directory Layout

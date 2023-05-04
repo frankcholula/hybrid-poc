@@ -14,8 +14,6 @@ services:
     volumes:
       - /app/node_modules
       - ./backend:/app/backend
-    ports:
-      - 4001:3000
     environment:
       <<: *common-variables
       PORT: 3000
@@ -28,8 +26,6 @@ services:
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    ports:
-      - 4000:3000
     environment:
       <<: *common-variables
       PORT: 3000
