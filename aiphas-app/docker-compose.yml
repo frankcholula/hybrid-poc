@@ -4,8 +4,8 @@ x-common-variables: &common-variables
   NODE_ENV : development
   JWT_SECRET : abc123
   MONGO_URI : "${MONGO_URI}"
+  # enabling this flag because of host header checking
   DANGEROUSLY_DISABLE_HOST_CHECK: true
-
 
 services:
   backend:
