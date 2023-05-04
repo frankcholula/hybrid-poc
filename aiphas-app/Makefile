@@ -4,6 +4,7 @@ all: build run
 # for running stuff locally
 .PHONY: run.dev
 run.dev:
+	@echo "Make sure you change the proxy in the frontend 'package.json' file!"
 	npm run dev
 
 .PHONY: run.dev.backend
